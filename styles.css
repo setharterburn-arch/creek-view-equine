@@ -1,0 +1,312 @@
+/* ============================================================
+   Creek View Equine — demo stylesheet
+   Direction: equestrian broadsheet meets engraved stud card.
+   Navy studio dark · bone parchment type · brass hairline system.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,440;9..144,560;9..144,650&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --ink:#0a1626;
+  --night:#05101d;
+  --panel:#0e2237;
+  --panel-2:#122a42;
+  --bone:#efe9dd;
+  --bone-dim:#a9b0ba;
+  --roan:#8ba2ba;
+  --frost:#c7d6e6;
+  --brass:#c39a58;
+  --brass-bright:#dcb877;
+  --line:rgba(239,233,221,.13);
+  --line-strong:rgba(239,233,221,.28);
+
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+
+  --shell:1220px;
+  --gut:clamp(20px,5vw,64px);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--bone);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* subtle atmospheric texture on the base */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(1200px 600px at 78% -8%, rgba(139,162,186,.16), transparent 60%),
+    radial-gradient(900px 700px at -10% 110%, rgba(195,154,88,.07), transparent 55%);
+}
+main,header,footer{position:relative;z-index:1}
+
+.shell{max-width:var(--shell);margin:0 auto;padding-inline:var(--gut)}
+
+/* ---------- shared type devices ---------- */
+.eyebrow{
+  font-family:var(--sans);
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--roan);
+  display:inline-flex;align-items:center;gap:.7em;
+}
+.eyebrow::before{
+  content:"";width:26px;height:1px;background:var(--brass);display:inline-block;
+}
+.eyebrow.center::after{
+  content:"";width:26px;height:1px;background:var(--brass);display:inline-block;
+}
+h1,h2,h3{font-family:var(--serif);font-weight:440;line-height:1.02;margin:0}
+.display{
+  font-family:var(--serif);
+  font-weight:340;
+  font-size:clamp(2.6rem,7vw,5.6rem);
+  letter-spacing:-.01em;
+}
+.script-accent{
+  font-weight:560;
+  font-style:italic;
+  color:var(--frost);
+}
+p{margin:0 0 1em}
+.lede{font-size:1.15rem;color:var(--bone-dim)}
+
+/* brass card frame w/ engraved corner ticks */
+.plate{position:relative;border:1px solid var(--line-strong);background:linear-gradient(180deg,var(--panel),var(--night))}
+.plate::before,.plate::after{
+  content:"";position:absolute;width:14px;height:14px;pointer-events:none;
+}
+.plate::before{top:9px;left:9px;border-top:1px solid var(--brass);border-left:1px solid var(--brass)}
+.plate::after{bottom:9px;right:9px;border-bottom:1px solid var(--brass);border-right:1px solid var(--brass)}
+
+/* ---------- header ---------- */
+.topbar{
+  position:sticky;top:0;z-index:40;
+  background:rgba(8,18,31,.72);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .shell{display:flex;align-items:center;gap:24px;height:70px}
+.brand{display:flex;align-items:center;gap:13px;margin-right:auto}
+.brand img{width:42px;height:42px;border-radius:50%;box-shadow:0 0 0 1px var(--line-strong)}
+.brand .bt{display:block;font-family:var(--serif);font-size:1.12rem;letter-spacing:.02em;line-height:1}
+.brand .bs{display:block;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--roan);margin-top:5px}
+.nav{display:flex;gap:26px}
+.nav a{font-size:.82rem;letter-spacing:.06em;color:var(--bone-dim);transition:color .2s;white-space:nowrap}
+.nav a:hover{color:var(--bone)}
+.btn{
+  font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.04em;
+  padding:.72em 1.25em;border:1px solid var(--brass);color:var(--brass-bright);
+  border-radius:2px;transition:all .22s;white-space:nowrap;cursor:pointer;background:transparent;
+}
+.btn:hover{background:var(--brass);color:var(--night);border-color:var(--brass)}
+.btn.solid{background:var(--brass);color:var(--night)}
+.btn.solid:hover{background:var(--brass-bright);border-color:var(--brass-bright)}
+.nav-toggle{display:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+.cap .hero{min-height:780px}/* pin hero height for full-page capture (avoids vh blow-up) */
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(5,16,29,.62) 0%,rgba(5,16,29,.15) 34%,rgba(5,16,29,.72) 78%,var(--ink) 100%),
+    linear-gradient(90deg,rgba(5,16,29,.7) 0%,transparent 55%);
+}
+.hero .shell{position:relative;z-index:1;width:100%;padding-block:6vh 5vh}
+.hero .display{max-width:14ch;margin-top:.35em}
+.hero .sub{max-width:46ch;margin-top:1.3em;font-size:1.12rem;color:var(--bone-dim)}
+.hero-cta{display:flex;gap:14px;margin-top:2em;flex-wrap:wrap}
+
+/* marquee facts strip under hero */
+.facts{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--night);
+}
+.facts .shell{display:grid;grid-template-columns:repeat(4,1fr)}
+.fact{padding:26px var(--gut);border-left:1px solid var(--line)}
+.fact:first-child{border-left:0}
+.fact .k{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--roan)}
+.fact .v{font-family:var(--serif);font-size:1.5rem;margin-top:8px;line-height:1.1}
+.fact .v small{display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.02em;color:var(--bone-dim);margin-top:4px}
+
+/* ---------- generic section ---------- */
+section{padding-block:clamp(64px,9vw,120px)}
+.section-head{max-width:60ch}
+.section-head h2{font-size:clamp(2rem,4.4vw,3.2rem);margin-top:.5em}
+.section-head .lede{margin-top:1em}
+
+/* intro / statement */
+.statement .shell{display:grid;grid-template-columns:1fr;gap:0}
+.statement .big{
+  font-family:var(--serif);font-weight:340;
+  font-size:clamp(1.6rem,3.6vw,2.7rem);line-height:1.28;max-width:22ch;margin:0 auto;
+  text-align:center;
+}
+.statement .big b{font-weight:340;color:var(--frost);font-style:italic}
+.statement .meta{display:flex;justify-content:center;gap:40px;margin-top:48px;flex-wrap:wrap;text-align:center}
+.statement .meta div{min-width:120px}
+.statement .meta .k{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--roan)}
+.statement .meta .v{font-family:var(--serif);font-size:1.25rem;margin-top:6px}
+
+/* ---------- THE STUD CARD (signature) ---------- */
+.stud .card{
+  display:grid;grid-template-columns:1fr 1.05fr;gap:0;margin-top:56px;
+}
+.stud .card .portrait{position:relative;overflow:hidden;min-height:520px}
+.stud .card .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stud .card .portrait .seal{
+  position:absolute;top:20px;right:20px;z-index:2;
+  width:96px;height:96px;border-radius:50%;
+  border:1px solid var(--brass);
+  display:grid;place-content:center;text-align:center;
+  background:rgba(5,16,29,.55);backdrop-filter:blur(3px);
+}
+.stud .card .portrait .seal span{font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-bright);line-height:1.5}
+.stud .card .portrait .seal b{display:block;font-family:var(--serif);font-size:1.5rem;color:var(--bone);letter-spacing:0}
+
+.stud .card .body{padding:clamp(30px,4vw,52px)}
+.stud .card .kicker{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--brass-bright)}
+.stud .card h3{font-size:clamp(2.1rem,4vw,3rem);margin-top:14px;line-height:1}
+.stud .card h3 em{font-style:italic;color:var(--frost);font-weight:560;display:block;font-size:.6em;margin-top:.15em}
+.stud .card .quote{
+  font-family:var(--serif);font-style:italic;font-size:1.22rem;line-height:1.5;
+  color:var(--bone);border-left:2px solid var(--brass);padding-left:20px;margin:26px 0;
+}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);margin-top:8px}
+.spec div{padding:15px 0;border-bottom:1px solid var(--line)}
+.spec div:nth-child(odd){padding-right:20px}
+.spec .k{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--roan)}
+.spec .v{font-family:var(--serif);font-size:1.16rem;margin-top:3px}
+.stud .card .cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.stud .card .fee{font-family:var(--serif);font-size:1.6rem}
+.stud .card .fee small{font-family:var(--sans);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--roan);display:block}
+
+/* pedigree ribbon */
+.pedigree{margin-top:60px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0}
+.pedigree .lab{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--roan);text-align:center}
+.ped-lines{display:flex;justify-content:center;gap:clamp(24px,6vw,80px);flex-wrap:wrap;margin-top:22px;text-align:center}
+.ped-lines div .t{font-family:var(--serif);font-size:1.2rem}
+.ped-lines div .s{font-size:.78rem;color:var(--bone-dim);margin-top:3px}
+
+/* under-saddle band */
+.saddle{margin-top:60px;display:grid;grid-template-columns:1.4fr 1fr;gap:0;align-items:stretch}
+.saddle .img{overflow:hidden;min-height:340px}
+.saddle .img img{width:100%;height:100%;object-fit:cover}
+.saddle .txt{padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;justify-content:center}
+.saddle .txt h3{font-size:1.9rem;margin-bottom:.5em}
+
+/* ---------- roster (second stallion) ---------- */
+.roster .card2{display:grid;grid-template-columns:.9fr 1.1fr;gap:0;margin-top:48px}
+.roster .card2 .img{overflow:hidden;min-height:420px;position:relative}
+.roster .card2 .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.roster .card2 .body{padding:clamp(30px,4vw,52px);display:flex;flex-direction:column;justify-content:center}
+.roster .tag{display:inline-block;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--night);background:var(--brass);padding:.4em .8em;border-radius:2px;width:max-content}
+.roster .card2 h3{font-size:2.2rem;margin:18px 0 4px}
+.roster .placeholder{color:var(--bone-dim);font-style:italic;margin-top:12px}
+.roster .spec .v.tbd{color:var(--roan);font-style:italic;font-family:var(--sans);font-size:.95rem}
+
+/* ---------- service / process ---------- */
+.service{background:var(--night)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;border-top:1px solid var(--line)}
+.step{padding:34px 30px 34px 0;border-bottom:1px solid var(--line);position:relative}
+.step .n{font-family:var(--serif);font-size:2.6rem;color:var(--brass);line-height:1}
+.step h3{font-size:1.35rem;margin:16px 0 10px}
+.step p{color:var(--bone-dim);font-size:.96rem;margin:0}
+.options{display:flex;gap:14px;margin-top:44px;flex-wrap:wrap}
+.option{border:1px solid var(--line-strong);padding:16px 22px;border-radius:2px}
+.option .k{font-family:var(--serif);font-size:1.15rem}
+.option .s{font-size:.78rem;color:var(--bone-dim);margin-top:2px}
+
+/* ---------- gallery ---------- */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:48px}
+.gallery-grid a{position:relative;overflow:hidden;aspect-ratio:1/1;border:1px solid var(--line)}
+.gallery-grid a.wide{grid-column:span 2;aspect-ratio:2/1}
+.gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.gallery-grid a:hover img{transform:scale(1.06)}
+
+/* ---------- farm ---------- */
+.farm .shell{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,80px);align-items:center}
+.farm .addr{margin-top:28px;border-top:1px solid var(--line)}
+.farm .addr div{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}
+.farm .addr .k{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--roan);align-self:center}
+.farm .addr .v{font-family:var(--serif);font-size:1.15rem;text-align:right}
+
+/* ---------- contact ---------- */
+.contact{background:var(--night);text-align:center}
+.contact h2{font-size:clamp(2.2rem,5vw,3.6rem);max-width:16ch;margin:.4em auto 0}
+.contact .phone{font-family:var(--serif);font-size:clamp(2rem,5vw,3rem);color:var(--brass-bright);margin-top:.5em;display:inline-block}
+.contact .who{color:var(--bone-dim);margin-top:8px}
+.contact form{max-width:640px;margin:44px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:left}
+.contact input,.contact textarea{
+  width:100%;background:var(--panel);border:1px solid var(--line-strong);color:var(--bone);
+  font-family:var(--sans);font-size:.95rem;padding:14px 16px;border-radius:2px;
+}
+.contact textarea{grid-column:1/-1;min-height:120px;resize:vertical}
+.contact .full{grid-column:1/-1}
+.contact input:focus,.contact textarea:focus{outline:2px solid var(--brass);outline-offset:1px;border-color:var(--brass)}
+.note{font-size:.78rem;color:var(--roan);margin-top:16px}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);border-top:1px solid var(--line);padding-block:48px}
+footer .shell{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
+footer .brand .bt{font-size:1rem}
+footer .fnav{display:flex;gap:24px;flex-wrap:wrap}
+footer .fnav a{font-size:.8rem;color:var(--bone-dim)}
+footer .cr{width:100%;border-top:1px solid var(--line);margin-top:30px;padding-top:22px;font-size:.75rem;color:var(--roan);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ---------- reveal animation (progressive enhancement) ---------- */
+/* Content is visible by default; only the .anim gate (set by JS) hides-then-reveals. */
+.anim .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+.anim .reveal.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media(max-width:960px){
+  .stud .card,.saddle,.roster .card2,.farm .shell{grid-template-columns:1fr}
+  .stud .card .portrait{min-height:400px}
+  .steps{grid-template-columns:1fr}
+  .step{padding-right:0}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid a.wide{grid-column:span 2}
+  .facts .shell{grid-template-columns:repeat(2,1fr)}
+  .fact:nth-child(1),.fact:nth-child(2){border-bottom:1px solid var(--line)}
+  .fact:nth-child(odd){border-left:0}
+}
+@media(max-width:680px){
+  body{font-size:16px}
+  .nav{
+    position:fixed;inset:70px 0 auto 0;flex-direction:column;gap:0;
+    background:var(--night);border-bottom:1px solid var(--line);
+    transform:translateY(-140%);transition:transform .35s ease;padding:6px 0;
+  }
+  .nav.open{transform:none}
+  .nav a{padding:15px var(--gut);border-bottom:1px solid var(--line)}
+  .topbar .btn{display:none}
+  .nav-toggle{display:inline-flex;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:var(--bone);display:block}
+  .facts .shell{grid-template-columns:1fr}
+  .fact{border-left:0;border-bottom:1px solid var(--line)}
+  .spec{grid-template-columns:1fr}
+  .contact form{grid-template-columns:1fr}
+  .statement .meta{gap:26px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto}
+  .anim .reveal{opacity:1;transform:none;transition:none}
+  .gallery-grid img{transition:none}
+}
