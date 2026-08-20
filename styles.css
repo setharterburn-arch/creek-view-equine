@@ -271,6 +271,14 @@ footer .fnav{display:flex;gap:24px;flex-wrap:wrap}
 footer .fnav a{font-size:.8rem;color:var(--bone-dim)}
 footer .cr{width:100%;border-top:1px solid var(--line);margin-top:30px;padding-top:22px;font-size:.75rem;color:var(--roan);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
+/* ---------- online payment ---------- */
+.paybox[hidden]{display:none}
+.paybox{margin-top:44px;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,56px);padding:clamp(26px,4vw,44px);align-items:center}
+.paybox .pay-txt h3{font-size:clamp(1.4rem,2.4vw,1.9rem);margin:.35em 0 .4em}
+.paybox .pay-btns{background:var(--night);border:1px solid var(--line);padding:clamp(18px,3vw,28px)}
+.paybox .note{font-size:.75rem;color:var(--roan);margin:.9em 0 0}
+.pay-done{font-family:var(--serif);color:var(--brass-bright);font-size:1.05rem;line-height:1.4}
+
 /* ---------- reveal animation (progressive enhancement) ---------- */
 /* Content is visible by default; only the .anim gate (set by JS) hides-then-reveals. */
 .anim .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
@@ -278,7 +286,7 @@ footer .cr{width:100%;border-top:1px solid var(--line);margin-top:30px;padding-t
 
 /* ---------- responsive ---------- */
 @media(max-width:960px){
-  .stud .card,.saddle,.roster .card2,.farm .shell{grid-template-columns:1fr}
+  .stud .card,.saddle,.roster .card2,.farm .shell,.paybox{grid-template-columns:1fr}
   .stud .card .portrait{min-height:400px}
   .steps{grid-template-columns:1fr}
   .step{padding-right:0}

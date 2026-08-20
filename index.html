@@ -39,8 +39,8 @@
   <section class="hero">
     <div class="hero-bg">
       <picture>
-        <source media="(max-width:680px)" srcset="assets/img/gyp-02.jpg">
-        <img src="assets/img/cover-stallions.jpg" alt="Creek View Equine Gypsy Vanner stallions">
+        <source media="(max-width:680px)" srcset="assets/img/sparky-portrait.jpg">
+        <img src="assets/img/hero-sparky.jpg" alt="A Spark of Cosmic Blue, braided blue roan Gypsy Vanner stallion">
       </picture>
     </div>
     <div class="shell">
@@ -87,7 +87,7 @@
 
       <div class="card plate reveal">
         <div class="portrait">
-          <img src="assets/img/gyp-02.jpg" alt="A Spark of Cosmic Blue, blue roan Gypsy Vanner stallion">
+          <img src="assets/img/sparky-studio.jpg" alt="A Spark of Cosmic Blue, blue roan Gypsy Vanner stallion, studio portrait">
           <div class="seal"><span>GVHS</span><b>✦</b><span>Registered</span></div>
         </div>
         <div class="body">
@@ -121,7 +121,7 @@
 
       <!-- under saddle -->
       <div class="saddle plate reveal">
-        <div class="img"><img src="assets/img/gyp-vid-thumb.jpg" alt="A Spark of Cosmic Blue ridden under saddle in a western arena"></div>
+        <div class="img"><img src="assets/img/sparky-bridge.jpg" alt="A Spark of Cosmic Blue crossing a wooden bridge obstacle under saddle"></div>
         <div class="txt">
           <span class="eyebrow">Proven Under Saddle</span>
           <h3>Not just pretty — broke &amp; willing.</h3>
@@ -140,7 +140,7 @@
         <p class="lede">A second stallion joins the Creek View roster. Full particulars are being finalized — this frame is ready for his card.</p>
       </div>
       <div class="card2 plate reveal">
-        <div class="img"><img src="assets/img/stallion-bay.jpg" alt="Bay Creek View Equine stallion, studio portrait"></div>
+        <div class="img"><img src="assets/img/stallion-bay-full.jpg" alt="Bay Creek View Equine stallion standing with handler"></div>
         <div class="body">
           <span class="tag">Standing 2026</span>
           <h3>Second Stallion</h3>
@@ -189,6 +189,19 @@
         <div class="option"><div class="k">Frozen Semen</div><div class="s">Stored &amp; shipped</div></div>
         <div class="option"><div class="k">$600 · LFG</div><div class="s">Live foal guarantee</div></div>
       </div>
+
+      <!-- online payment (renders only when PayPal is configured) -->
+      <div class="paybox plate reveal" id="paybox" hidden>
+        <div class="pay-txt">
+          <span class="eyebrow">Pay Online</span>
+          <h3>Secure your booking with PayPal.</h3>
+          <p class="lede">Pay the $600 stud fee online — card or PayPal balance, processed securely. Call first to confirm your mare's booking, then pay here to lock in the season.</p>
+        </div>
+        <div class="pay-btns">
+          <div id="paypal-button-container"></div>
+          <p class="note">Payments go directly to Creek View Equine.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -198,14 +211,18 @@
       <div class="section-head reveal">
         <span class="eyebrow">The Horses</span>
         <h2>Gallery</h2>
+        <p class="lede">Stallions, mares and this season's foals — photographed on the farm and on the road.</p>
       </div>
       <div class="gallery-grid reveal">
-        <a class="wide" href="assets/img/cover-stallions.jpg"><img src="assets/img/cover-stallions.jpg" alt="Two stallions studio portrait"></a>
-        <a href="assets/img/gyp-02.jpg"><img src="assets/img/gyp-02.jpg" alt="Blue roan stallion headshot"></a>
-        <a href="assets/img/stallion-roan-studio.jpg"><img src="assets/img/stallion-roan-studio.jpg" alt="Blue roan Gypsy Vanner studio"></a>
-        <a href="assets/img/gyp-vid-thumb.jpg"><img src="assets/img/gyp-vid-thumb.jpg" alt="Stallion under saddle"></a>
-        <a href="assets/img/stallion-bay.jpg"><img src="assets/img/stallion-bay.jpg" alt="Bay stallion studio"></a>
-        <a class="wide" href="assets/img/gyp-01.jpg"><img src="assets/img/gyp-01.jpg" alt="A Spark of Cosmic Blue stud card"></a>
+        <a class="wide" href="assets/img/cve-stallions.jpg"><img src="assets/img/cve-stallions.jpg" alt="Creek View Equine stallions, studio pair"></a>
+        <a href="assets/img/sparky-saddle.jpg"><img src="assets/img/sparky-saddle.jpg" alt="A Spark of Cosmic Blue working under saddle"></a>
+        <a href="assets/img/sparky-expo.jpg"><img src="assets/img/sparky-expo.jpg" alt="A Spark of Cosmic Blue at an equine expo"></a>
+        <a href="assets/img/sparky-portrait.jpg"><img src="assets/img/sparky-portrait.jpg" alt="A Spark of Cosmic Blue, braided portrait"></a>
+        <a href="assets/img/foal-newborn.jpg"><img src="assets/img/foal-newborn.jpg" alt="Newborn Creek View foal resting in straw beside its dam"></a>
+        <a href="assets/img/foal-mare-01.jpg"><img src="assets/img/foal-mare-01.jpg" alt="Creek View foal at its dam's side in pasture"></a>
+        <a href="assets/img/foal-trot.jpg"><img src="assets/img/foal-trot.jpg" alt="Creek View foal trotting across the pasture"></a>
+        <a href="assets/img/foal-mare-02.jpg"><img src="assets/img/foal-mare-02.jpg" alt="Foal and mare grazing at Creek View"></a>
+        <a class="wide" href="assets/img/sparky-ride-wide.jpg"><img src="assets/img/sparky-ride-wide.jpg" alt="A Spark of Cosmic Blue under saddle at a winter expo"></a>
       </div>
     </div>
   </section>
@@ -281,6 +298,28 @@
   reveals.forEach(el=>io.observe(el));
   // failsafe: never leave content hidden
   window.addEventListener('load',()=>setTimeout(()=>reveals.forEach(el=>el.classList.add('in')),2600));
+
+  // ---- PayPal stud-fee checkout ----
+  // Set clientId to the live client ID from Eli's PayPal business account
+  // (developer.paypal.com -> Apps & Credentials) and the paybox appears.
+  const PAYPAL_CONFIG={clientId:'',currency:'USD',amount:'600.00',
+    description:'Stud fee - A Spark of Cosmic Blue (LFG)'};
+  if(PAYPAL_CONFIG.clientId){
+    const box=document.getElementById('paybox');box.hidden=false;
+    const s=document.createElement('script');
+    s.src='https://www.paypal.com/sdk/js?client-id='+encodeURIComponent(PAYPAL_CONFIG.clientId)+'&currency='+PAYPAL_CONFIG.currency+'&intent=capture';
+    s.onload=()=>{
+      paypal.Buttons({
+        style:{layout:'vertical',color:'gold',shape:'rect',label:'paypal'},
+        createOrder:(d,a)=>a.order.create({purchase_units:[{amount:{value:PAYPAL_CONFIG.amount,currency_code:PAYPAL_CONFIG.currency},description:PAYPAL_CONFIG.description}]}),
+        onApprove:(d,a)=>a.order.capture().then(o=>{
+          const el=document.getElementById('paypal-button-container');
+          el.innerHTML='<p class="pay-done">Payment received - thank you. We\'ll call to confirm your booking. Ref: '+o.id+'</p>';
+        })
+      }).render('#paypal-button-container');
+    };
+    document.head.appendChild(s);
+  }
 </script>
 </body>
 </html>
