@@ -25,6 +25,7 @@
       <a href="#pedigree">Pedigree</a>
       <a href="#service">Stud Service</a>
       <a href="#roster">Roster</a>
+      <a href="media.html">Media</a>
       <a href="#farm">The Farm</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -140,18 +141,38 @@
         <p class="lede">A second stallion joins the Creek View roster. Full particulars are being finalized — this frame is ready for his card.</p>
       </div>
       <div class="card2 plate reveal">
-        <div class="img"><img src="assets/img/stallion-bay-full.jpg" alt="Bay Creek View Equine stallion standing with handler"></div>
+        <div class="img"><img src="assets/img/stallion-bay-full.jpg" alt="Blue River Chief, bay Creek View Equine stallion, standing with handler"></div>
         <div class="body">
           <span class="tag">Standing 2026</span>
-          <h3>Second Stallion</h3>
-          <p class="placeholder">Name, registration and pedigree to be added.</p>
+          <h3>Blue River Chief</h3>
+          <p class="placeholder">Proven in harness — see him drive in <a href="media.html#film">the farm film</a>. Registration and pedigree to follow.</p>
           <div class="spec">
-            <div><div class="k">Breed</div><div class="v tbd">To be confirmed</div></div>
             <div><div class="k">Color</div><div class="v">Bay</div></div>
-            <div><div class="k">Height</div><div class="v tbd">To be confirmed</div></div>
+            <div><div class="k">Discipline</div><div class="v">Driving · In harness</div></div>
             <div><div class="k">Registration</div><div class="v tbd">To be confirmed</div></div>
+            <div><div class="k">Fee</div><div class="v tbd">Inquire</div></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOAL CROP ========== -->
+  <section class="foals" id="foals">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="eyebrow">The Get</span>
+        <h2>The proof is on the ground.</h2>
+        <p class="lede">Every spring the breeding program answers for itself. Creek View foals arrive with the bone, the feather and — first and always — the quiet mind their sires are bred for.</p>
+      </div>
+      <div class="foal-strip reveal">
+        <a href="media.html#foals"><img src="assets/img/foal-newborn.jpg" alt="Newborn Creek View foal in the straw beside its dam" loading="lazy"></a>
+        <a href="media.html#foals"><img src="assets/img/foal-mare-01.jpg" alt="Creek View foal at its dam's side in pasture" loading="lazy"></a>
+        <a href="media.html#foals"><img src="assets/img/foal-trot.jpg" alt="Creek View foal trotting across spring pasture" loading="lazy"></a>
+        <a href="media.html#foals"><img src="assets/img/foal-mare-02.jpg" alt="Foal and mare grazing at Creek View" loading="lazy"></a>
+      </div>
+      <div class="cta-row reveal">
+        <a class="btn" href="media.html#foals">See this year's foals</a>
       </div>
     </div>
   </section>
@@ -211,18 +232,19 @@
       <div class="section-head reveal">
         <span class="eyebrow">The Horses</span>
         <h2>Gallery</h2>
-        <p class="lede">Stallions, mares and this season's foals — photographed on the farm and on the road.</p>
+        <p class="lede">A few favorites — the full library of fifty-two photographs and the farm film lives on the media page.</p>
       </div>
       <div class="gallery-grid reveal">
         <a class="wide" href="assets/img/cve-stallions.jpg"><img src="assets/img/cve-stallions.jpg" alt="Creek View Equine stallions, studio pair"></a>
         <a href="assets/img/sparky-saddle.jpg"><img src="assets/img/sparky-saddle.jpg" alt="A Spark of Cosmic Blue working under saddle"></a>
         <a href="assets/img/sparky-expo.jpg"><img src="assets/img/sparky-expo.jpg" alt="A Spark of Cosmic Blue at an equine expo"></a>
         <a href="assets/img/sparky-portrait.jpg"><img src="assets/img/sparky-portrait.jpg" alt="A Spark of Cosmic Blue, braided portrait"></a>
-        <a href="assets/img/foal-newborn.jpg"><img src="assets/img/foal-newborn.jpg" alt="Newborn Creek View foal resting in straw beside its dam"></a>
-        <a href="assets/img/foal-mare-01.jpg"><img src="assets/img/foal-mare-01.jpg" alt="Creek View foal at its dam's side in pasture"></a>
-        <a href="assets/img/foal-trot.jpg"><img src="assets/img/foal-trot.jpg" alt="Creek View foal trotting across the pasture"></a>
-        <a href="assets/img/foal-mare-02.jpg"><img src="assets/img/foal-mare-02.jpg" alt="Foal and mare grazing at Creek View"></a>
+        <a href="assets/media/road-06.jpg"><img src="assets/media/road-06-th.jpg" alt="A Spark of Cosmic Blue schooling at an expo"></a>
         <a class="wide" href="assets/img/sparky-ride-wide.jpg"><img src="assets/img/sparky-ride-wide.jpg" alt="A Spark of Cosmic Blue under saddle at a winter expo"></a>
+      </div>
+      <div class="cta-row reveal" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:clamp(26px,4vh,38px);justify-content:center">
+        <a class="btn solid" href="media.html">Browse the media library</a>
+        <a class="btn" href="media.html#film">Watch the farm film</a>
       </div>
     </div>
   </section>
@@ -277,7 +299,7 @@
     <nav class="fnav">
       <a href="#stallion">The Stallion</a>
       <a href="#service">Stud Service</a>
-      <a href="#farm">The Farm</a>
+      <a href="media.html">Media</a>
       <a href="tel:+12705371509">(270) 537-1509</a>
     </nav>
     <div class="cr">
@@ -298,6 +320,20 @@
   reveals.forEach(el=>io.observe(el));
   // failsafe: never leave content hidden
   window.addEventListener('load',()=>setTimeout(()=>reveals.forEach(el=>el.classList.add('in')),2600));
+
+  // hero video loop — desktop only, honors reduced motion, photo stays as poster
+  (function(){
+    if(!document.documentElement.classList.contains('anim'))return;
+    if(!matchMedia('(min-width:960px) and (prefers-reduced-motion:no-preference)').matches)return;
+    const bg=document.querySelector('.hero-bg');if(!bg)return;
+    const v=document.createElement('video');
+    v.muted=true;v.loop=true;v.playsInline=true;v.autoplay=true;
+    v.setAttribute('aria-hidden','true');v.tabIndex=-1;
+    v.style.opacity='0';v.style.transition='opacity 1.6s ease';
+    v.src='assets/media/hero-loop.mp4';
+    v.addEventListener('canplaythrough',()=>{bg.appendChild(v);requestAnimationFrame(()=>v.style.opacity='1');v.play().catch(()=>v.remove())},{once:true});
+    v.load();
+  })();
 
   // ---- PayPal stud-fee checkout ----
   // Set clientId to the live client ID from Eli's PayPal business account
