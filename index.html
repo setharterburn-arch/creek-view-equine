@@ -321,16 +321,19 @@
   // failsafe: never leave content hidden
   window.addEventListener('load',()=>setTimeout(()=>reveals.forEach(el=>el.classList.add('in')),2600));
 
-  // hero video loop — desktop only, honors reduced motion, photo stays as poster
+  // hero video loop — portrait cut on phones, landscape on desktop.
+  // Photo stays as poster; skipped under reduced-motion or Save-Data.
   (function(){
     if(!document.documentElement.classList.contains('anim'))return;
-    if(!matchMedia('(min-width:960px) and (prefers-reduced-motion:no-preference)').matches)return;
+    if(!matchMedia('(prefers-reduced-motion:no-preference)').matches)return;
+    if(navigator.connection&&navigator.connection.saveData)return;
     const bg=document.querySelector('.hero-bg');if(!bg)return;
+    const portrait=matchMedia('(max-width:680px)').matches;
     const v=document.createElement('video');
     v.muted=true;v.loop=true;v.playsInline=true;v.autoplay=true;
     v.setAttribute('aria-hidden','true');v.tabIndex=-1;
     v.style.opacity='0';v.style.transition='opacity 1.6s ease';
-    v.src='assets/media/hero-loop.mp4';
+    v.src=portrait?'assets/media/hero-loop-portrait.mp4':'assets/media/hero-loop.mp4';
     v.addEventListener('canplaythrough',()=>{bg.appendChild(v);requestAnimationFrame(()=>v.style.opacity='1');v.play().catch(()=>v.remove())},{once:true});
     v.load();
   })();
